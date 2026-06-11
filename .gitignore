@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.idea/
+.DS_Store
+*.log
+# случайно созданные файлы Kraken/API
+Users/
+# отчёты сканов (оставляем только структуру)
+reports/web/*.json
+reports/web/*.txt
+reports/web/history.jsonl
+reports/batch/
+reports/*.json
+reports/*.txt
+!reports/.gitkeep
+!reports/web/.gitkeep

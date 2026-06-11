@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control Tower | filtr-docker</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Control Tower</h1>
+        <p>Фильтр Docker-образов перед репликацией в production</p>
+      </div>
+      <div id="healthBadge" class="badge">Проверка статуса...</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel">
+        <h2>Новый скан</h2>
+        <form id="scanForm" class="scan-form">
+          <label for="imageInput">Docker image</label>
+          <input id="imageInput" type="text" placeholder="bad-container:test" required />
+          <button id="scanButton" type="submit">Запустить проверку</button>
+        </form>
+        <p class="hint">
+          Пример: сначала соберите тестовый образ:
+          <code>docker build -t bad-container:test ../bad-container</code>
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>KPI</h2>
+        <div class="kpi-grid">
+          <article class="kpi">
+            <span>Всего сканов</span>
+            <strong id="kpiTotal">0</strong>
+          </article>
+          <article class="kpi">
+            <span>Отклонено</span>
+            <strong id="kpiFailed">0</strong>
+          </article>
+          <article class="kpi">
+            <span>Критичных находок</span>
+            <strong id="kpiCritical">0</strong>
+          </article>
+          <article class="kpi">
+            <span>Warning находок</span>
+            <strong id="kpiWarning">0</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel wide">
+        <h2>История проверок</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Время</th>
+                <th>Образ</th>
+                <th>Статус</th>
+                <th>Critical</th>
+                <th>Warning</th>
+                <th>Длительность</th>
+                <th>Детали</th>
+              </tr>
+            </thead>
+            <tbody id="historyBody">
+              <tr>
+                <td colspan="7" class="empty">История пока пустая</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel wide">
+        <h2>Детали скана</h2>
+        <div id="details" class="details">
+          <p class="empty">Выберите запись в истории, чтобы увидеть findings и рекомендации.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
